@@ -1,0 +1,59 @@
+[
+  {
+    "city": "Mumbai",
+    "name": "Rahul Sharma",
+    "role": "CA & Finance Mentor",
+    "linkedin": "https://linkedin.com/in/rahulsharma",
+    "whatsapp": "+919876543210"
+  },
+  {
+    "city": "Mumbai",
+    "name": "Priya Desai",
+    "role": "IT Career Coach",
+    "linkedin": "https://linkedin.com/in/priyadesai",
+    "whatsapp": "+919876543211"
+  },
+  {
+    "city": "Delhi",
+    "name": "Amit Kumar",
+    "role": "Engineering Mentor",
+    "linkedin": "https://linkedin.com/in/amitkumar",
+    "whatsapp": "+919876543212"
+  },
+  {
+    "city": "Bangalore",
+    "name": "Sneha Reddy",
+    "role": "Data Science Guide",
+    "linkedin": "https://linkedin.com/in/snehareddy",
+    "whatsapp": "+919876543213"
+  },
+  {
+    "city": "Hyderabad",
+    "name": "Vikram Rao",
+    "role": "Management Consultant",
+    "linkedin": "https://linkedin.com/in/vikramrao",
+    "whatsapp": "+919876543214"
+  },
+  {
+    "city": "Chennai",
+    "name": "Lakshmi Iyer",
+    "role": "Medicine Mentor",
+    "linkedin": "https://linkedin.com/in/lakshmiiyer",
+    "whatsapp": "+919876543215"
+  },
+  {
+    "city": "Surat",
+    "name": "Meena Joshi",
+    "role": "Commerce Guide",
+    "linkedin": "https://linkedin.com/in/meenajoshi",
+    "whatsapp": "+919876543216"
+  },
+  {
+    "city": "Pune",
+    "name": "Rohan Patil",
+    "role": "Startup Advisor",
+    "linkedin": "https://linkedin.com/in/rohanpatil",
+    "whatsapp": "+919876543217"
+  }
+]
+
