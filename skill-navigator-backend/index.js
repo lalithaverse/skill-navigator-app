@@ -85,4 +85,6 @@ Ensure the output is pure JSON only. Example:
   }
 });
 
-app.listen(3001, () => console.log('Backend running on port 3001'));
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));
