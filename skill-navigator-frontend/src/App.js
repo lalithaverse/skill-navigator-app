@@ -92,7 +92,7 @@ function App() {
   async function handleSubmit(form) {
     setUserName(form.name);
     setUserCity(form.city);
-    const res = await fetch("http://localhost:3001/api/analyze", {
+    const res = await fetch("https://skill-navigator-app.onrender.com/api/analyze", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(form)
