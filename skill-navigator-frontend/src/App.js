@@ -86,6 +86,8 @@ function App() {
   const [userCity, setUserCity] = useState('');
   const [selectedLanguage, setSelectedLanguage] = useState('English');
   const [mentors, setMentors] = useState([]);
+  const [loading, setLoading] = useState(false);
+
 
   // Load mentors from mentors.json in /public
   useEffect(() => {
@@ -96,6 +98,7 @@ function App() {
   }, []);
 
   async function handleSubmit(form) {
+    setLoading(true);
     setUserName(form.name);
     setUserCity(form.city);
     const res = await fetch("https://skill-navigator-app.onrender.com/api/analyze", {
@@ -105,6 +108,7 @@ function App() {
     });
     const data = await res.json();
     setOutput(data.response);
+    setLoading(false);  
   }
 
   // Filter mentor cards by user's city
@@ -278,8 +282,18 @@ function App() {
         <img src="/AYUD1.png" alt="AYUD logo" style={logoStyle} />
       </div>
       <div style={{ width: "100%", zIndex: 2, position: "relative" }}>
-        <ProfileForm onSubmit={handleSubmit} />
-
+     <ProfileForm onSubmit={handleSubmit} />
+      {loading && (
+          <div style={{
+            textAlign: "center",
+            margin: "1.5rem",
+            fontWeight: "bold",
+            color: "#fb8500",
+            fontSize: "1.4rem"
+          }}>
+            ⏳ Please wait, AYUD is stitching your skills and aspirations in the fastest way to your Dream Career
+          </div>
+      )}
         {output && (
           <div style={analysisBox}>
             <h2 style={{ color: "#1976d2", textAlign: "center" }}>
