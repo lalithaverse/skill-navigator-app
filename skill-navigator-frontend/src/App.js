@@ -4,9 +4,11 @@ import ProfileForm from './Components/ProfileForm';
 // --- STYLES ---
 const BG_ANIMATION = {
   position: "fixed",
-  top:0, left:0,
-  width:"100vw", height:"100vh",
-  zIndex:0,
+  top: 0,
+  left: 0,
+  width: "100vw",
+  height: "100vh",
+  zIndex: 0,
   pointerEvents: "none",
   background: "radial-gradient(circle, #fffbe7 0%, #e9f8ed 40%, #ffecd2 100%)",
   animation: "bgMove 22s linear infinite alternate"
@@ -17,29 +19,33 @@ const keyframes = `
   100% {background-position: 100% 50%;}
 }`;
 const IndiaBanner = {
-  width:"100%", padding:"1rem 0",
-  background:"linear-gradient(90deg,#ff671f 0%,#fff 35%,#46b729 80%)",
-  textAlign:"center",
-  fontWeight:"bold",
-  fontSize:"2.24rem",
-  letterSpacing:".04em",
-  color:"#0c232e",
-  boxShadow:"0 4px 16px #f1f1f1"
-};
-const topMotivationSection = {
+  width: "100%",
+  padding: "0.2rem 0",
+  background: "linear-gradient(90deg,#ff671f 0%,#fff 35%,#46b729 80%)",
   textAlign: "center",
-  padding: "2rem 0",
+  fontWeight: "bold",
+  fontSize: "2.24rem",
+  letterSpacing: ".04em",
+  color: "#0c232e",
+  boxShadow: "0 4px 16px #f1f1f1"
+};
+const topLogoSection = {
+  textAlign: "center",
+  padding: "0",           // Or adjust as needed
   zIndex: 1,
   position: "relative"
 };
-const bigMotivationText = {
-  fontSize: "3rem",
-  fontWeight: "bold",
-  background: "linear-gradient(90deg, #e76f51, #fb8500)",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  marginBottom: "0.5rem"
+const logoStyle = {
+  display: "block",
+  marginLeft: "auto",
+  marginRight: "auto",
+  width: "90vw",       // Make width almost full viewport
+  maxWidth: "1200px",  // Optional: limit max size for huge screens
+  height: "auto",
+  objectFit: "contain",
+  margin: "0 auto 0.5rem auto"
 };
+
 const analysisBox = {
   maxWidth: "95%",
   width: "1200px",
@@ -266,35 +272,29 @@ function App() {
       <div style={BG_ANIMATION}></div>
       <style>{keyframes}</style>
       <div style={IndiaBanner}>
-        🇮🇳 <span style={{color:"#ff671f"}}>India Upfront</span> – Skilling India <span style={{color:"#46b729"}}>🚀</span>
+        🇮🇳 <span style={{ color: "#ff671f" }}>India Upfront</span> – Skilling India <span style={{ color: "#46b729" }}>🚀</span>
       </div>
-      <div style={topMotivationSection}>
-        <div style={bigMotivationText}>💡 Vision to Reality</div>
-        <div style={{...bigMotivationText, background: "linear-gradient(90deg, #46b729, #2e7d32)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent"}}>
-          🏆 Achieve Your Dreams
-        </div>
-        <p style={{fontSize:"1.3rem", color:"#274777", marginTop:"0.5rem"}}>
-          "Skill up, step up." Your vision needs action! 🇮🇳 🚀
-        </p>
+      <div style={topLogoSection}>
+        <img src="/AYUD1.png" alt="AYUD logo" style={logoStyle} />
       </div>
-      <div style={{width:"100%", zIndex:2, position:"relative"}}>
+      <div style={{ width: "100%", zIndex: 2, position: "relative" }}>
         <ProfileForm onSubmit={handleSubmit} />
 
         {output && (
           <div style={analysisBox}>
-            <h2 style={{color: "#1976d2", textAlign: "center"}}>
+            <h2 style={{ color: "#1976d2", textAlign: "center" }}>
               🤖 AI-Powered Guidance Analysis
             </h2>
-            <h3 style={{color: "#fb8500", textAlign: "center"}}>Hi {userName}! 👋</h3>
+            <h3 style={{ color: "#fb8500", textAlign: "center" }}>{userName ? `Hi ${userName}! 👋` : "Welcome!"}</h3>
             {output.job_market_forecast && (
-              <div style={{marginBottom:"1.5rem"}}>
-                <b>General Analysis (Job Market Forecast):</b><br/>
+              <div style={{ marginBottom: "1.5rem" }}>
+                <b>General Analysis (Job Market Forecast):</b><br />
                 {output.job_market_forecast}
               </div>
             )}
-            <hr style={separator}/>
+            <hr style={separator} />
             {output.skills_needed && (
-              <div style={{marginBottom:"1.5rem"}}>
+              <div style={{ marginBottom: "1.5rem" }}>
                 <b>Skills Required:</b>
                 <ul>
                   {output.skills_needed.map((skill, idx) => (
@@ -303,9 +303,9 @@ function App() {
                 </ul>
               </div>
             )}
-            <hr style={separator}/>
+            <hr style={separator} />
             {output.skill_gap && (
-              <div style={{marginBottom:"1.5rem"}}>
+              <div style={{ marginBottom: "1.5rem" }}>
                 <b>Skill Gap:</b>
                 <ul>
                   {output.skill_gap.map((gap, idx) => (
@@ -314,9 +314,9 @@ function App() {
                 </ul>
               </div>
             )}
-            <hr style={separator}/>
+            <hr style={separator} />
             {output.recommended_courses_city && (
-              <div style={{marginBottom:"1.5rem"}}>
+              <div style={{ marginBottom: "1.5rem" }}>
                 <b>Recommended Courses and Resources (Your City):</b>
                 {Array.isArray(output.recommended_courses_city) ? (
                   <ul>
@@ -329,10 +329,10 @@ function App() {
                 )}
               </div>
             )}
-            <hr style={separator}/>
+            <hr style={separator} />
             {output.recommended_courses_abroad && output.recommended_courses_abroad !== "N/A as per candidate's preference to not study abroad." && (
               <>
-                <div style={{marginBottom:"1.5rem"}}>
+                <div style={{ marginBottom: "1.5rem" }}>
                   <b>Recommended Courses and Resources (Outside India):</b>
                   {Array.isArray(output.recommended_courses_abroad) ? (
                     <ul>
@@ -344,12 +344,12 @@ function App() {
                     <div>{output.recommended_courses_abroad}</div>
                   )}
                 </div>
-                <hr style={separator}/>
+                <hr style={separator} />
               </>
             )}
             {output.city_opportunities && (
-              <div style={{marginBottom:"1.5rem"}}>
-                <b>Career Opportunities (Your City, 0–3 Years):</b><br/>
+              <div style={{ marginBottom: "1.5rem" }}>
+                <b>Career Opportunities (Your City, 0–3 Years):</b><br />
                 {output.city_opportunities}
               </div>
             )}
@@ -363,51 +363,51 @@ function App() {
               boxShadow: "0 2px 10px #e3e3e3",
               textAlign: "center"
             }}>
-              <h2 style={{fontSize: "2rem", color: "#4fc3f7", marginBottom: "1rem"}}>
+              <h2 style={{ fontSize: "2rem", color: "#4fc3f7", marginBottom: "1rem" }}>
                 🏅 Connect with Local Career Champions
               </h2>
-              <p style={{fontSize: "1.08rem", marginBottom: "1.3rem", color:"#222"}}>
+              <p style={{ fontSize: "1.08rem", marginBottom: "1.3rem", color: "#222" }}>
                 Want real-world advice? Connect with mentors in {userCity}!
               </p>
 
               {cityMentors.length > 0 ? (
                 cityMentors.map((mentor, idx) => (
                   <div key={idx} style={{
-                    background:"#ebf8ff",
-                    padding:"1rem",
-                    borderRadius:"10px",
-                    margin:"1rem 0",
+                    background: "#ebf8ff",
+                    padding: "1rem",
+                    borderRadius: "10px",
+                    margin: "1rem 0",
                     boxShadow: "0 2px 6px #ddd",
                     textAlign: "left"
                   }}>
-                    <h3 style={{color: "#1976d2", marginBottom: "0.5rem"}}>
+                    <h3 style={{ color: "#1976d2", marginBottom: "0.5rem" }}>
                       👤 {mentor.name}
                     </h3>
-                    <p style={{margin: "0.3rem 0"}}>
+                    <p style={{ margin: "0.3rem 0" }}>
                       <b>Role:</b> {mentor.role}
                     </p>
-                    <p style={{margin: "0.3rem 0"}}>
+                    <p style={{ margin: "0.3rem 0" }}>
                       <b>LinkedIn:</b> <a href={mentor.linkedin} target="_blank" rel="noopener noreferrer">View Profile</a>
                     </p>
-                    <p style={{margin: "0.3rem 0"}}>
+                    <p style={{ margin: "0.3rem 0" }}>
                       <b>WhatsApp:</b> <a href={`https://wa.me/${mentor.whatsapp.replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer">Message Now</a>
                     </p>
                   </div>
                 ))
               ) : (
-                <p style={{color: "#666"}}>
+                <p style={{ color: "#666" }}>
                   No mentors found for {userCity} yet. We're expanding our network!
                 </p>
               )}
             </div>
 
             {/* Language Selection and Download */}
-            <div style={{textAlign:"center", marginTop:"2rem"}}>
-              <label style={{fontWeight:"bold", marginRight:"1rem"}}>Select Language for Download:</label>
-              <select 
-                value={selectedLanguage} 
+            <div style={{ textAlign: "center", marginTop: "2rem" }}>
+              <label style={{ fontWeight: "bold", marginRight: "1rem" }}>Select Language for Download:</label>
+              <select
+                value={selectedLanguage}
                 onChange={(e) => setSelectedLanguage(e.target.value)}
-                style={{padding:"0.5rem", borderRadius:"5px", marginRight:"1rem"}}
+                style={{ padding: "0.5rem", borderRadius: "5px", marginRight: "1rem" }}
               >
                 <option value="English">English</option>
                 <option value="Hindi">हिंदी (Hindi)</option>
@@ -423,54 +423,54 @@ function App() {
               </button>
             </div>
             <div style={{
-              marginTop:"2.5rem",
+              marginTop: "2.5rem",
               padding: "1.5rem",
               borderRadius: "12px",
               background: "linear-gradient(120deg, #fffbe7 70%, #e3f6fd 100%)",
               boxShadow: "0 2px 10px #e3e3e3",
-              }}>
-                <h2 style={{ color:"#1976d2", marginBottom:"1rem" }}>🎓 Top Free Scholarships & Skilling Resources (India)</h2>
-                <ul>
-                  <li>
-                    <b>🇮🇳 National Scholarship Portal:</b> <a href="https://scholarships.gov.in/" target="_blank" rel="noopener noreferrer">scholarships.gov.in</a>
-                    <br/><span style={{color:'#222'}}>Govt. of India central, state, SC/ST/OBC/minority, post-matric and means-based scholarships—apply here for almost all official schemes!</span>
-                  </li>
-                  <li>
-                    <b>👍 Google India Scholarships:</b> <a href="https://buildyourfuture.withgoogle.com/scholarships" target="_blank" rel="noopener noreferrer">Google Scholarships</a>
-                    <br/><span style={{color:'#222'}}>For women in tech, students from underserved backgrounds, career certificates (includes stipend/support).</span>
-                  </li>
-                    <li>
-                      <b>💼 TATA, Aditya Birla, Reliance Foundation, Infosys Foundation, Microsoft:</b>
-                        <ul>
-                          <li><a href="https://www.vidyasaarathi.co.in/" target="_blank" rel="noopener noreferrer">Vidyasaarathi (by NSDL, supports TATA, Birla, etc)</a></li>
-                          <li><a href="https://scholarship.reliancefoundation.org/" target="_blank" rel="noopener noreferrer">Reliance Foundation Scholarships</a></li>
-                          <li><a href="https://www.adityabirlascholars.net/" target="_blank" rel="noopener noreferrer">Aditya Birla Scholarships</a></li>
-                          <li><a href="https://microsoft.com/en-in/diversity/scholarships" target="_blank" rel="noopener noreferrer">Microsoft Scholarships India</a></li>
-                          <li><a href="https://www.infosys.com/scholarships" target="_blank" rel="noopener noreferrer">Infosys Scholarships</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                      <b>📚 NPTEL Free Online Courses (IIT/IISc):</b> <a href="https://nptel.ac.in/courses" target="_blank" rel="noopener noreferrer">nptel.ac.in/courses</a>
-                          <br/><span style={{color:'#222'}}>India’s largest MOOC platform—engineering, science, management, social sciences, languages. Government-endorsed, accessible in multiple regional languages. Free lectures, paid optional certification.</span>
-                    </li>
-                    <li>
-                      <b>🚀 Google Career Certificates (Coursera):</b> <a href="https://grow.google/intl/en_in/certificates/" target="_blank" rel="noopener noreferrer">grow.google/intl/en_in/certificates</a>
-                      <br/><span style={{color:'#222'}}>Free for eligible youth—Data Analytics, IT Support, Project Management, Digital Marketing.</span>
-                    </li>
-                    <li>
-                        <b>🌍 Udemy, Coursera, edX, FutureLearn:</b> Massive free and subsidized courses regularly available. (Try <a href="https://www.classcentral.com/" target="_blank" rel="noopener noreferrer">ClassCentral.com</a> for latest free offers).
-                    </li>
-                    <li>
-                        <b>🗺️ State Govt/Minority Schemes:</b> Check your <a href="https://www.india.gov.in/my-government/schemes" target="_blank" rel="noopener noreferrer">state/district/department page</a> for specific free skilling and scholarships.
-                    </li>
-                </ul>
-                <p style={{marginTop:"1rem", color:"#1976d2", fontWeight:"bold"}}>
-                  <span role="img" aria-label="lightbulb">💡</span> For regular updates, search “free India scholarships [your city/stream]” on YouTube, and join community WhatsApp groups from NGOs, Skill India, or Karyashala.
-                </p>
-            </div>   
-          </div>       
-        )}        
-      </div>      
+            }}>
+              <h2 style={{ color: "#1976d2", marginBottom: "1rem" }}>🎓 Top Free Scholarships & Skilling Resources (India)</h2>
+              <ul>
+                <li>
+                  <b>🇮🇳 National Scholarship Portal:</b> <a href="https://scholarships.gov.in/" target="_blank" rel="noopener noreferrer">scholarships.gov.in</a>
+                  <br /><span style={{ color: '#222' }}>Govt. of India central, state, SC/ST/OBC/minority, post-matric and means-based scholarships—apply here for almost all official schemes!</span>
+                </li>
+                <li>
+                  <b>👍 Google India Scholarships:</b> <a href="https://buildyourfuture.withgoogle.com/scholarships" target="_blank" rel="noopener noreferrer">Google Scholarships</a>
+                  <br /><span style={{ color: '#222' }}>For women in tech, students from underserved backgrounds, career certificates (includes stipend/support).</span>
+                </li>
+                <li>
+                  <b>💼 TATA, Aditya Birla, Reliance Foundation, Infosys Foundation, Microsoft:</b>
+                  <ul>
+                    <li><a href="https://www.vidyasaarathi.co.in/" target="_blank" rel="noopener noreferrer">Vidyasaarathi (by NSDL, supports TATA, Birla, etc)</a></li>
+                    <li><a href="https://scholarship.reliancefoundation.org/" target="_blank" rel="noopener noreferrer">Reliance Foundation Scholarships</a></li>
+                    <li><a href="https://www.adityabirlascholars.net/" target="_blank" rel="noopener noreferrer">Aditya Birla Scholarships</a></li>
+                    <li><a href="https://microsoft.com/en-in/diversity/scholarships" target="_blank" rel="noopener noreferrer">Microsoft Scholarships India</a></li>
+                    <li><a href="https://www.infosys.com/scholarships" target="_blank" rel="noopener noreferrer">Infosys Scholarships</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <b>📚 NPTEL Free Online Courses (IIT/IISc):</b> <a href="https://nptel.ac.in/courses" target="_blank" rel="noopener noreferrer">nptel.ac.in/courses</a>
+                  <br /><span style={{ color: '#222' }}>India’s largest MOOC platform—engineering, science, management, social sciences, languages. Government-endorsed, accessible in multiple regional languages. Free lectures, paid optional certification.</span>
+                </li>
+                <li>
+                  <b>🚀 Google Career Certificates (Coursera):</b> <a href="https://grow.google/intl/en_in/certificates/" target="_blank" rel="noopener noreferrer">grow.google/intl/en_in/certificates</a>
+                  <br /><span style={{ color: '#222' }}>Free for eligible youth—Data Analytics, IT Support, Project Management, Digital Marketing.</span>
+                </li>
+                <li>
+                  <b>🌍 Udemy, Coursera, edX, FutureLearn:</b> Massive free and subsidized courses regularly available. (Try <a href="https://www.classcentral.com/" target="_blank" rel="noopener noreferrer">ClassCentral.com</a> for latest free offers).
+                </li>
+                <li>
+                  <b>🗺️ State Govt/Minority Schemes:</b> Check your <a href="https://www.india.gov.in/my-government/schemes" target="_blank" rel="noopener noreferrer">state/district/department page</a> for specific free skilling and scholarships.
+                </li>
+              </ul>
+              <p style={{ marginTop: "1rem", color: "#1976d2", fontWeight: "bold" }}>
+                <span role="img" aria-label="lightbulb">💡</span> For regular updates, search “free India scholarships [your city/stream]” on YouTube, and join community WhatsApp groups from NGOs, Skill India, or Karyashala.
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
     </>
   );
 }
